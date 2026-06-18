@@ -4,9 +4,8 @@ import torch.nn as nn
 def conv_block(in_ch, out_ch, stride):
     return nn.Sequential(
         nn.utils.spectral_norm(
-            nn.Conv2d(in_ch, out_ch, 3, stride, 1, bias=False)
+            nn.Conv2d(in_ch, out_ch, 3, stride, 1)
         ),
-        nn.BatchNorm2d(out_ch),
         nn.LeakyReLU(0.2, inplace=True),
     )
 

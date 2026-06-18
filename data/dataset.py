@@ -29,8 +29,13 @@ class MRISliceDataset(Dataset):
                             interpolation=TF.InterpolationMode.BICUBIC)
             H = W = self.hr
 
-        top  = random.randint(0, H - self.hr)
-        left = random.randint(0, W - self.hr)
+        if self.augment:
+            top = random.randint(0, H - self.hr)
+            left = random.randint(0, W - self.hr)
+        else:
+            top = (H - self.hr) // 2
+            left = (W - self.hr) // 2
+
         hr = TF.crop(img, top, left, self.hr, self.hr)
         lr = TF.resize(hr, [self.lr, self.lr],
                        interpolation=TF.InterpolationMode.BICUBIC)
@@ -82,8 +87,12 @@ class FastMRIDataset(Dataset):
                            interpolation=TF.InterpolationMode.BICUBIC)
             H = W = self.hr
 
-        top  = random.randint(0, H - self.hr)
-        left = random.randint(0, W - self.hr)
+        if self.augment:
+            top = random.randint(0, H - self.hr)
+            left = random.randint(0, W - self.hr)
+        else:
+            top = (H - self.hr) // 2
+            left = (W - self.hr) // 2
         hr = TF.crop(hr, top, left, self.hr, self.hr)
         lr = TF.resize(hr, [self.lr, self.lr],
                        interpolation=TF.InterpolationMode.BICUBIC)

@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environments
+.venv/
+venv/
+
+# Training artifacts
+checkpoints/
+runs/
+results/
+
+# Datasets
+data/train/
+data/val/
+
+# OS files
+.DS_Store
+Thumbs.db
