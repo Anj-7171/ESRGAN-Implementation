@@ -18,3 +18,5 @@ data/val/
 # OS files
 .DS_Store
 Thumbs.db
+
+results_esrgan/
