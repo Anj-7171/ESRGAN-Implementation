@@ -20,6 +20,7 @@ def save_image(tensor, path):
 
 
 def create_comparison(lr, sr, hr, save_path):
+
     lr_img = TF.to_pil_image(lr)
     sr_img = TF.to_pil_image(sr)
     hr_img = TF.to_pil_image(hr)
@@ -69,7 +70,8 @@ def evaluate(args):
     total_psnr = 0
     total_ssim = 0
 
-    sample_saved = False
+    # Save 5 representative samples
+    sample_indices = [0, 20, 40, 60, 80]
 
     for idx in range(len(dataset)):
 
@@ -82,28 +84,42 @@ def evaluate(args):
 
         sr_cpu = sr.squeeze(0).cpu()
 
-        total_psnr += compute_psnr(sr_cpu, hr)
-        total_ssim += compute_ssim(sr_cpu, hr)
+        psnr = compute_psnr(sr_cpu, hr)
+        ssim = compute_ssim(sr_cpu, hr)
 
-        if not sample_saved:
+        total_psnr += psnr
+        total_ssim += ssim
 
-            save_image(lr.squeeze(0),
-                       results_dir / "lr.png")
+        if idx in sample_indices:
 
-            save_image(sr_cpu,
-                       results_dir / "sr.png")
+            sample_dir = results_dir / f"sample_{idx}"
+            sample_dir.mkdir(exist_ok=True)
 
-            save_image(hr,
-                       results_dir / "hr.png")
+            save_image(
+                lr.squeeze(0),
+                sample_dir / "lr.png"
+            )
+
+            save_image(
+                sr_cpu,
+                sample_dir / "sr.png"
+            )
+
+            save_image(
+                hr,
+                sample_dir / "hr.png"
+            )
 
             create_comparison(
                 lr.squeeze(0),
                 sr_cpu,
                 hr,
-                results_dir / "comparison.png"
+                sample_dir / "comparison.png"
             )
 
-            sample_saved = True
+            with open(sample_dir / "metrics.txt", "w") as f:
+                f.write(f"PSNR: {psnr:.4f}\n")
+                f.write(f"SSIM: {ssim:.4f}\n")
 
     avg_psnr = total_psnr / len(dataset)
     avg_ssim = total_ssim / len(dataset)
@@ -115,11 +131,12 @@ def evaluate(args):
     print("==========================\n")
 
     with open(results_dir / "metrics.txt", "w") as f:
-        f.write(f"PSNR: {avg_psnr:.4f}\n")
-        f.write(f"SSIM: {avg_ssim:.4f}\n")
+        f.write(f"Average PSNR: {avg_psnr:.4f}\n")
+        f.write(f"Average SSIM: {avg_ssim:.4f}\n")
 
 
 def parse_args():
+
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
