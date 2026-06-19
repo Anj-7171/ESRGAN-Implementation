@@ -29,7 +29,7 @@ This project is trained and evaluated on the DIV2K dataset.
 
 ---
 
-## Project Structure
+## 📂 Project Structure
 ESRGAN-Implementation/
 │
 ├── models/ # Generator and Discriminator (RRDBNet, etc.)
@@ -37,10 +37,10 @@ ESRGAN-Implementation/
 ├── utils/ # Loss functions, metrics, helper functions
 ├── train.py # Training script
 ├── evaluate.py # Evaluation script (PSNR/SSIM)
-├── config.py # Hyperparameters and config
-├── degradation.py # LR image generation
+├── config.py # Hyperparameters and configuration
+├── degradation.py # Low-resolution image generation pipeline
 ├── checkpoints/ # Saved model weights
-├── results/ # Super-resolved outputs
+├── results/ # Super-resolved output images
 └── README.md
 
 ---
