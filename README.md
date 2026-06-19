@@ -30,38 +30,34 @@ This project is trained and evaluated on the DIV2K dataset.
 ---
 
 ## Project Structure
+```
 ESRGAN-Implementation/
 ├── models/
-│   └── # Generator and Discriminator (RRDBNet, etc.)
 ├── datasets/
-│   └── # Dataset loading scripts
 ├── utils/
-│   └── # Loss functions, metrics, helper functions
 ├── train.py
-│   └── # Training script
 ├── evaluate.py
-│   └── # Evaluation script (PSNR/SSIM)
 ├── config.py
-│   └── # Hyperparameters and configuration
 ├── degradation.py
-│   └── # Low-resolution image generation pipeline
 ├── checkpoints/
-│   └── # Saved model weights
 ├── results/
-│   └── # Super-resolved output images
 └── README.md
+```
 
 ---
 
 ## Installation
 
 Clone the repository:
+```
 git clone https://github.com/Anj-7171/ESRGAN-Implementation.git
 cd ESRGAN-Implementation
+```
 
 ## Install Dependencies
+```
 pip install -r requirements.txt
-
+```
 ## Dataset
 This project uses the DIV2K dataset:
 
@@ -69,24 +65,28 @@ High-Resolution images (HR)
 Low-Resolution images generated via degradation pipeline
 
 Expected Structure: 
+```
 data/
 ├── train/
 ├── valid/
 └── test/
+```
 
 ## Training
 Stage 1: Pretraining (Pixel Loss Only)
+```
 python train.py --mode pretrain
-
+```
 Stage 2: GAN Training (Full ESRGAN)
+```
 python train.py --mode gan
-
+```
 ## Evaluation
 
 Run evaluation:
-
+```
 python evaluate.py --checkpoint checkpoints/esrgan_best.pth
-
+```
 This will output:
 
 PSNR score
