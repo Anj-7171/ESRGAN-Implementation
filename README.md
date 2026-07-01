@@ -2,6 +2,9 @@
 
 This repository contains a PyTorch implementation of **ESRGAN (Enhanced Super-Resolution Generative Adversarial Networks)** for single image super-resolution. The goal is to reconstruct high-resolution images from low-resolution inputs while preserving sharp textures and perceptual quality.
 
+<img width="1424" height="569" alt="image" src="https://github.com/user-attachments/assets/ac0e2c63-013a-481c-8190-3a45b8e0dfdc" />
+
+
 Built as part of a deep learning super-resolution project.
 ---
 
@@ -92,6 +95,24 @@ This will output:
 PSNR score
 SSIM score
 Generated super-resolved images in results/
+
+Results:
+
+<img width="757" height="297" alt="image" src="https://github.com/user-attachments/assets/6ed4526e-fc2c-46ae-bfeb-3640b0b547bb" />
+
+<img width="767" height="456" alt="image" src="https://github.com/user-attachments/assets/42c5527a-dafa-4b1a-9a0f-44077b0e987f" />
+
+After GAN Training:
+
+<img width="756" height="370" alt="image" src="https://github.com/user-attachments/assets/c2f113f3-ede9-45e0-991f-efa02aa085ae" />
+
+<img width="792" height="513" alt="image" src="https://github.com/user-attachments/assets/598e9af3-d9b4-42db-a0a9-0e735d1d7f9a" />
+
+Final ESRGAN Outputs:
+
+<img width="668" height="762" alt="image" src="https://github.com/user-attachments/assets/8a3fb857-c2fa-4059-8b98-d354bb6e4b0a" />
+
+<img width="801" height="96" alt="image" src="https://github.com/user-attachments/assets/0aa1d155-9c3c-4394-9a91-48608221b753" />
 
 ## References:
 ESRGAN Paper: https://arxiv.org/abs/1809.00219
